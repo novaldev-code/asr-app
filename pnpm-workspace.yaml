@@ -1,0 +1,23 @@
+packages:
+  - backend
+
+allowBuilds:
+  sharp: false
+  unrs-resolver: false
+  '@swc/core': true
+  esbuild: true
+  '@scarf/scarf': false
+
+minimumReleaseAgeExclude:
+  - '@better-auth/core@1.7.22'
+  - '@better-auth/drizzle-adapter@1.7.22'
+  - '@better-auth/kysely-adapter@1.7.22'
+  - '@better-auth/memory-adapter@1.7.22'
+  - '@better-auth/mongo-adapter@1.7.22'
+  - '@better-auth/prisma-adapter@1.7.22'
+  - '@better-auth/telemetry@1.7.22'
+  - '@nestjs/common@12.5.0'
+  - '@nestjs/core@12.5.0'
+  - '@nestjs/platform-express@12.5.0'
+  - '@nestjs/testing@12.5.0'
+  - better-auth@1.7.22

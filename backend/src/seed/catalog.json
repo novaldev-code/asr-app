@@ -1,0 +1,497 @@
+{
+  "categories": [
+    {
+      "name": "Biji Kopi",
+      "slug": "biji-kopi",
+      "description": "Biji sangrai segar dari berbagai daerah di Indonesia."
+    },
+    {
+      "name": "Kopi Bubuk",
+      "slug": "kopi-bubuk",
+      "description": "Praktis diseduh kapan saja, cocok untuk di rumah dan kantor."
+    },
+    {
+      "name": "Drip Bag",
+      "slug": "drip-bag",
+      "description": "Kopi sachet sekali seduh untuk perjalanan dan waktu sibuk."
+    },
+    {
+      "name": "Alat Seduh",
+      "slug": "alat-seduh",
+      "description": "Peralatan manual brew untuk ritual kopi yang lebih nikmat."
+    },
+    {
+      "name": "Merchandise",
+      "slug": "merchandise",
+      "description": "Tumbler, mug, dan tas untuk menemani hari Anda."
+    },
+    {
+      "name": "Paket Hadiah",
+      "slug": "paket-hadiah",
+      "description": "Paket kopi pilihan yang siap dihadiahkan."
+    }
+  ],
+  "products": [
+    {
+      "categoryId": "c1",
+      "name": "Arabika Gayo Premium",
+      "slug": "arabika-gayo-premium",
+      "description": "Biji arabika dari dataran tinggi Gayo dengan profil rasa cokelat, jeruk manis, dan keasaman yang lembut. Cocok untuk pour over maupun espresso.",
+      "price": 95000,
+      "stock": 24,
+      "imageUrl": "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": true
+    },
+    {
+      "categoryId": "c1",
+      "name": "Arabika Toraja Sapan",
+      "slug": "arabika-toraja-sapan",
+      "description": "Sangrai medium dengan aroma rempah manis, body tebal, dan aftertaste karamel yang panjang.",
+      "price": 105000,
+      "stock": 18,
+      "imageUrl": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c1",
+      "name": "Robusta Lampung",
+      "slug": "robusta-lampung",
+      "description": "Robusta dengan body kuat dan sentuhan kacang panggang. Pilihan tepat untuk pecinta kopi pekat.",
+      "price": 75000,
+      "stock": 30,
+      "imageUrl": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c1",
+      "name": "House Blend Mocha",
+      "slug": "house-blend-mocha",
+      "description": "Perpaduan arabika dan robusta yang seimbang, manis, dan mudah dinikmati setiap hari.",
+      "price": 88000,
+      "stock": 40,
+      "imageUrl": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": true
+    },
+    {
+      "categoryId": "c1",
+      "name": "Arabika Kintamani",
+      "slug": "arabika-kintamani",
+      "description": "Biji kopi Bali dengan karakter buah tropis, floral, dan keasaman cerah yang menyegarkan.",
+      "price": 110000,
+      "stock": 12,
+      "imageUrl": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c2",
+      "name": "Kopi Bubuk Gayo 250g",
+      "slug": "kopi-bubuk-gayo-250g",
+      "description": "Gayo premium yang digiling halus, siap diseduh dengan V60, tubruk, atau moka pot.",
+      "price": 68000,
+      "stock": 35,
+      "imageUrl": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": true
+    },
+    {
+      "categoryId": "c2",
+      "name": "Kopi Bubuk House Blend 250g",
+      "slug": "kopi-bubuk-house-blend-250g",
+      "description": "Rasa seimbang dan ramah di lidah, cocok untuk kopi susu maupun kopi hitam.",
+      "price": 62000,
+      "stock": 50,
+      "imageUrl": "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c2",
+      "name": "Kopi Bubuk Robusta 250g",
+      "slug": "kopi-bubuk-robusta-250g",
+      "description": "Robusta murni dengan aroma kuat. Sedang tidak tersedia, silakan cek varian lain.",
+      "price": 55000,
+      "stock": 0,
+      "imageUrl": "https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c2",
+      "name": "Espresso Blend 250g",
+      "slug": "espresso-blend-250g",
+      "description": "Blend khusus espresso dengan crema tebal, rasa cokelat, dan manis alami.",
+      "price": 78000,
+      "stock": 22,
+      "imageUrl": "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c3",
+      "name": "Drip Bag Gayo (10 pcs)",
+      "slug": "drip-bag-gayo-10-pcs",
+      "description": "Sepuluh kantong drip praktis berisi Gayo premium. Cukup tuang air panas, nikmati di mana saja.",
+      "price": 85000,
+      "stock": 28,
+      "imageUrl": "https://images.unsplash.com/photo-1521302080334-4bebac2763a6?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": true
+    },
+    {
+      "categoryId": "c3",
+      "name": "Drip Bag House Blend (10 pcs)",
+      "slug": "drip-bag-house-blend-10-pcs",
+      "description": "Drip bag harian dengan rasa seimbang, praktis untuk dibawa ke kantor atau bepergian.",
+      "price": 75000,
+      "stock": 33,
+      "imageUrl": "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c3",
+      "name": "Drip Bag Variety Pack (12 pcs)",
+      "slug": "drip-bag-variety-pack-12-pcs",
+      "description": "Dua belas drip bag dari empat single origin berbeda untuk mencoba beragam rasa.",
+      "price": 99000,
+      "stock": 15,
+      "imageUrl": "https://images.unsplash.com/photo-1545665225-b23b99e4d45e?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c4",
+      "name": "Moka Pot Stainless 3 Cup",
+      "slug": "moka-pot-stainless-3-cup",
+      "description": "Moka pot stainless steel tahan lama untuk kopi pekat ala Italia di dapur Anda.",
+      "price": 185000,
+      "stock": 10,
+      "imageUrl": "https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c4",
+      "name": "French Press 600ml",
+      "slug": "french-press-600ml",
+      "description": "French press kaca borosilikat 600 ml dengan filter stainless, mudah dibersihkan.",
+      "price": 165000,
+      "stock": 8,
+      "imageUrl": "https://images.unsplash.com/photo-1524350876685-274059332603?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c4",
+      "name": "V60 Dripper Keramik",
+      "slug": "v60-dripper-keramik",
+      "description": "Dripper keramik dengan alur spiral untuk ekstraksi pour over yang konsisten.",
+      "price": 145000,
+      "stock": 14,
+      "imageUrl": "https://images.unsplash.com/photo-1504630083234-14187a9df0f5?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c4",
+      "name": "Hand Grinder Manual",
+      "slug": "hand-grinder-manual",
+      "description": "Grinder manual dengan burr baja dan pengaturan halus, ideal untuk perjalanan.",
+      "price": 275000,
+      "stock": 6,
+      "imageUrl": "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": true
+    },
+    {
+      "categoryId": "c4",
+      "name": "Timbangan Kopi Digital",
+      "slug": "timbangan-kopi-digital",
+      "description": "Timbangan digital presisi 0,1 g dengan timer, membantu konsistensi resep kopi.",
+      "price": 120000,
+      "stock": 20,
+      "imageUrl": "https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c4",
+      "name": "Kettle Leher Angsa 600ml",
+      "slug": "kettle-leher-angsa-600ml",
+      "description": "Kettle leher angsa dengan aliran air stabil untuk pour over yang lebih terkontrol.",
+      "price": 235000,
+      "stock": 5,
+      "imageUrl": "https://images.unsplash.com/photo-1495774856032-8b90bbb32b32?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c5",
+      "name": "Tumbler Keramik Mocha",
+      "slug": "tumbler-keramik-mocha",
+      "description": "Tumbler keramik berlapis warna mocha, menjaga suhu minuman lebih lama.",
+      "price": 125000,
+      "stock": 25,
+      "imageUrl": "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c5",
+      "name": "Tote Bag Canvas",
+      "slug": "tote-bag-canvas",
+      "description": "Tote bag kanvas tebal dengan sablon logo Mocha & Co., kuat untuk aktivitas harian.",
+      "price": 89000,
+      "stock": 40,
+      "imageUrl": "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c5",
+      "name": "Mug Cappuccino 350ml",
+      "slug": "mug-cappuccino-350ml",
+      "description": "Mug keramik 350 ml dengan bentuk cappuccino klasik, nyaman digenggam.",
+      "price": 95000,
+      "stock": 30,
+      "imageUrl": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c6",
+      "name": "Paket Ngopi Pagi",
+      "slug": "paket-ngopi-pagi",
+      "description": "Paket berisi kopi bubuk 250 g, drip bag 5 pcs, dan mug eksklusif. Siap menemani pagi.",
+      "price": 150000,
+      "stock": 16,
+      "imageUrl": "https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": true
+    },
+    {
+      "categoryId": "c6",
+      "name": "Paket Hadiah Premium",
+      "slug": "paket-hadiah-premium",
+      "description": "Kotak hadiah berisi dua single origin 200 g, dripper keramik, dan kartu ucapan.",
+      "price": 275000,
+      "stock": 9,
+      "imageUrl": "https://images.unsplash.com/photo-1506372023823-741c83b836fe?auto=format&fit=crop&w=900&q=80",
+      "isActive": true,
+      "featured": false
+    },
+    {
+      "categoryId": "c6",
+      "name": "Paket Kantor 500g",
+      "slug": "paket-kantor-500g",
+      "description": "Paket hemat untuk kebutuhan kopi kantor. Untuk sementara tidak ditampilkan di katalog.",
+      "price": 195000,
+      "stock": 12,
+      "imageUrl": "https://images.unsplash.com/photo-1520031441872-265e4ff70366?auto=format&fit=crop&w=900&q=80",
+      "isActive": false,
+      "featured": false
+    }
+  ],
+  "shippingRates": [
+    {
+      "province": "Aceh",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Sumatera Utara",
+      "cost": 32000,
+      "isDefault": false
+    },
+    {
+      "province": "Sumatera Barat",
+      "cost": 32000,
+      "isDefault": false
+    },
+    {
+      "province": "Riau",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Kepulauan Riau",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Jambi",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Bengkulu",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Sumatera Selatan",
+      "cost": 32000,
+      "isDefault": false
+    },
+    {
+      "province": "Kepulauan Bangka Belitung",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Lampung",
+      "cost": 30000,
+      "isDefault": false
+    },
+    {
+      "province": "Banten",
+      "cost": 18000,
+      "isDefault": false
+    },
+    {
+      "province": "DKI Jakarta",
+      "cost": 15000,
+      "isDefault": false
+    },
+    {
+      "province": "Jawa Barat",
+      "cost": 18000,
+      "isDefault": false
+    },
+    {
+      "province": "Jawa Tengah",
+      "cost": 22000,
+      "isDefault": false
+    },
+    {
+      "province": "DI Yogyakarta",
+      "cost": 22000,
+      "isDefault": false
+    },
+    {
+      "province": "Jawa Timur",
+      "cost": 22000,
+      "isDefault": false
+    },
+    {
+      "province": "Bali",
+      "cost": 30000,
+      "isDefault": false
+    },
+    {
+      "province": "Nusa Tenggara Barat",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Nusa Tenggara Timur",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Kalimantan Barat",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Kalimantan Tengah",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Kalimantan Selatan",
+      "cost": 38000,
+      "isDefault": false
+    },
+    {
+      "province": "Kalimantan Timur",
+      "cost": 38000,
+      "isDefault": false
+    },
+    {
+      "province": "Kalimantan Utara",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Sulawesi Utara",
+      "cost": 45000,
+      "isDefault": false
+    },
+    {
+      "province": "Gorontalo",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Sulawesi Tengah",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Sulawesi Barat",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Sulawesi Selatan",
+      "cost": 42000,
+      "isDefault": false
+    },
+    {
+      "province": "Sulawesi Tenggara",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Maluku",
+      "cost": 55000,
+      "isDefault": false
+    },
+    {
+      "province": "Maluku Utara",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Papua",
+      "cost": 65000,
+      "isDefault": false
+    },
+    {
+      "province": "Papua Barat",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Papua Barat Daya",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Papua Tengah",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Papua Pegunungan",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Papua Selatan",
+      "cost": 25000,
+      "isDefault": false
+    },
+    {
+      "province": "Default",
+      "cost": 25000,
+      "isDefault": true
+    }
+  ]
+}
