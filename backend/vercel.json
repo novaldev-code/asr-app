@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nestjs",
+  "installCommand": "pnpm install --frozen-lockfile --filter backend...",
+  "buildCommand": "pnpm run build",
+  "crons": [
+    {
+      "path": "/api/internal/orders/expire",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}

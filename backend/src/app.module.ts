@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { APP_GUARD } from "@nestjs/core";
-import { ScheduleModule } from "@nestjs/schedule";
 import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { AuthModule } from "@thallesp/nestjs-better-auth";
 import { auth } from "./auth/auth.js";
@@ -29,7 +28,6 @@ import { UsersModule } from "./modules/users/users.module.js";
       },
     }),
     ThrottlerModule.forRoot([{ ttl: 60_000, limit: 120 }]),
-    ScheduleModule.forRoot(),
     HealthModule,
     UsersModule,
     AddressesModule,

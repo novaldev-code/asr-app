@@ -1,5 +1,3 @@
-import { mkdirSync } from "node:fs";
-import { join } from "node:path";
 import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import type { NestExpressApplication } from "@nestjs/platform-express";
@@ -10,9 +8,6 @@ import { AllExceptionsFilter } from "./common/all-exceptions.filter.js";
 import { env } from "./config/env.js";
 
 export async function createApplication(): Promise<NestExpressApplication> {
-  mkdirSync(join(process.cwd(), env.UPLOAD_DIR, "products"), { recursive: true });
-  mkdirSync(join(process.cwd(), env.UPLOAD_DIR, "proofs"), { recursive: true });
-
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     bodyParser: false,
   });
@@ -35,9 +30,6 @@ export async function createApplication(): Promise<NestExpressApplication> {
     }),
   );
   app.useGlobalFilters(new AllExceptionsFilter());
-  app.useStaticAssets(join(process.cwd(), env.UPLOAD_DIR, "products"), {
-    prefix: "/uploads/products",
-  });
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle("Mocha & Co. API")

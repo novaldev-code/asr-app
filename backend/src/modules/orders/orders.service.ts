@@ -53,6 +53,8 @@ import type {
 
 @Injectable()
 export class OrdersService {
+  private expirySweepAt = 0;
+
   constructor(
     @Inject(DB) private readonly db: Database,
     private readonly cartService: CartService,
@@ -230,6 +232,7 @@ export class OrdersService {
   }
 
   async listForUser(userId: string, query: OrderQueryDto) {
+    await this.maybeExpire();
     const conditions = [eq(orders.userId, userId)];
     if (query.status) conditions.push(eq(orders.status, query.status));
     const where = and(...conditions);
@@ -258,6 +261,7 @@ export class OrdersService {
   }
 
   async getForUser(userId: string, orderId: string) {
+    await this.maybeExpire();
     const [order] = await this.db
       .select({ id: orders.id })
       .from(orders)
@@ -268,6 +272,7 @@ export class OrdersService {
   }
 
   async getForUserByNumber(userId: string, orderNumber: string) {
+    await this.maybeExpire();
     const [order] = await this.db
       .select({ id: orders.id })
       .from(orders)
@@ -360,6 +365,7 @@ export class OrdersService {
     isAdmin: boolean,
     orderId: string,
   ): Promise<{ buffer: Buffer; filename: string }> {
+    await this.maybeExpire();
     const order = await this.findOrderForAccess(userId, isAdmin, orderId);
     if (!order.paymentProofUrl) {
       throw new NotFoundException("Bukti pembayaran belum diunggah.");
@@ -372,6 +378,7 @@ export class OrdersService {
   }
 
   async listForAdmin(query: AdminOrderQueryDto) {
+    await this.maybeExpire();
     const conditions = [];
     if (query.status) conditions.push(eq(orders.status, query.status));
     if (query.paymentStatus) {
@@ -437,6 +444,7 @@ export class OrdersService {
   }
 
   async getForAdmin(orderId: string) {
+    await this.maybeExpire();
     const order = await this.loadOrder(orderId);
     const [customer] = await this.db
       .select({
@@ -551,6 +559,17 @@ export class OrdersService {
     });
   }
 
+  private async maybeExpire(): Promise<void> {
+    const now = Date.now();
+    if (now - this.expirySweepAt < 5 * 60_000) return;
+    this.expirySweepAt = now;
+    try {
+      await this.expireOrders(new Date(now));
+    } catch {
+      // Best effort; the daily Vercel Cron remains the backstop.
+    }
+  }
+
   async expireOrders(now = new Date()): Promise<number> {
     const candidates = await this.db
       .select({ id: orders.id })
@@ -573,6 +592,7 @@ export class OrdersService {
   }
 
   async dashboard() {
+    await this.maybeExpire();
     const [pendingRow] = await this.db
       .select({ value: count() })
       .from(orders)

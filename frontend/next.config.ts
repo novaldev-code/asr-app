@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
       },
       {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+      },
+      {
         protocol: apiBaseUrl.protocol === "https:" ? "https" : "http",
         hostname: apiBaseUrl.hostname,
         ...(apiBaseUrl.port ? { port: apiBaseUrl.port } : {}),

@@ -1,7 +1,12 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+  ServiceUnavailableException,
+} from "@nestjs/common";
 import { randomUUID } from "node:crypto";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { extname, join } from "node:path";
+import { extname } from "node:path";
+import { get, put } from "@vercel/blob";
 import { env } from "../../config/env.js";
 
 const ALLOWED_MIME: Record<string, string> = {
@@ -15,40 +20,66 @@ export const MAX_IMAGE_BYTES = 2 * 1024 * 1024;
 
 @Injectable()
 export class UploadsService {
-  private readonly root = join(process.cwd(), env.UPLOAD_DIR);
-
   async saveProductImage(file: Express.Multer.File): Promise<string> {
     this.validateImage(file);
     const name = `${randomUUID()}${this.extensionFor(file)}`;
-    const directory = join(this.root, "products");
-    await mkdir(directory, { recursive: true });
-    await writeFile(join(directory, name), file.buffer);
-    return `/uploads/products/${name}`;
+    const blob = await put(`products/${name}`, file.buffer, {
+      access: "public",
+      contentType: file.mimetype,
+      token: this.token("BLOB_PRODUCTS_READ_WRITE_TOKEN"),
+    });
+    return blob.url;
   }
 
   async savePaymentProof(file: Express.Multer.File): Promise<string> {
     this.validateImage(file);
     const name = `${randomUUID()}${this.extensionFor(file)}`;
-    const directory = join(this.root, "proofs");
-    await mkdir(directory, { recursive: true });
-    await writeFile(join(directory, name), file.buffer);
-    return `proofs/${name}`;
+    const blob = await put(`proofs/${name}`, file.buffer, {
+      access: "private",
+      contentType: file.mimetype,
+      token: this.token("BLOB_PROOFS_READ_WRITE_TOKEN"),
+    });
+    return blob.pathname;
   }
 
-  async readPaymentProof(relativePath: string): Promise<Buffer> {
-    const safeName = relativePath.replace(/^proofs\//, "");
-    if (safeName.includes("/") || safeName.includes("\\") || safeName.includes("..")) {
-      throw new BadRequestException("Lokasi bukti pembayaran tidak valid.");
+  async readPaymentProof(pathname: string): Promise<Buffer> {
+    const safePath = this.safeProofPath(pathname);
+    const result = await get(safePath, {
+      access: "private",
+      token: this.token("BLOB_PROOFS_READ_WRITE_TOKEN"),
+    });
+    if (!result) {
+      throw new NotFoundException("Bukti pembayaran tidak ditemukan.");
     }
-    return readFile(join(this.root, "proofs", safeName));
+    return Buffer.from(await new Response(result.stream).arrayBuffer());
   }
 
-  paymentProofAbsolutePath(relativePath: string): string {
-    const safeName = relativePath.replace(/^proofs\//, "");
-    if (safeName.includes("/") || safeName.includes("\\") || safeName.includes("..")) {
+  private token(
+    name: "BLOB_PRODUCTS_READ_WRITE_TOKEN" | "BLOB_PROOFS_READ_WRITE_TOKEN",
+  ): string {
+    const value = env[name];
+    if (!value) {
+      throw new ServiceUnavailableException(
+        `Penyimpanan file belum dikonfigurasi: ${name} tidak diisi.`,
+      );
+    }
+    return value;
+  }
+
+  private safeProofPath(pathname: string): string {
+    if (!pathname.startsWith("proofs/")) {
       throw new BadRequestException("Lokasi bukti pembayaran tidak valid.");
     }
-    return join(this.root, "proofs", safeName);
+    const safeName = pathname.slice("proofs/".length);
+    if (
+      !safeName ||
+      safeName.includes("/") ||
+      safeName.includes("\\") ||
+      safeName.includes("..")
+    ) {
+      throw new BadRequestException("Lokasi bukti pembayaran tidak valid.");
+    }
+    return pathname;
   }
 
   private validateImage(file: Express.Multer.File | undefined): void {

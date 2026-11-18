@@ -28,6 +28,46 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Frontend dan backend dideploy sebagai **dua project Vercel terpisah** dari repo yang sama:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. `frontend` — Root Directory `frontend`, Framework Preset **Next.js**.
+2. `backend` — Root Directory `backend`, Framework Preset **NestJS** (lihat `backend/vercel.json`).
+
+### Backend (`backend/`)
+
+- Set environment variables berikut di project Vercel:
+  - `NODE_ENV=production`
+  - `DATABASE_URL` (Postgres, gunakan connection string pooler)
+  - `BETTER_AUTH_SECRET` (minimal 32 karakter)
+  - `BETTER_AUTH_URL=https://<domain-backend>`
+  - `FRONTEND_URL=https://<domain-frontend>`
+  - `AUTH_COOKIE_SAMESITE` (`lax` untuk custom domain, `none` untuk domain `*.vercel.app`)
+  - `CRON_SECRET`
+  - `BLOB_PRODUCTS_READ_WRITE_TOKEN` dan `BLOB_PROOFS_READ_WRITE_TOKEN`
+  - `MAIL_TRANSPORT=smtp` beserta `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM`
+  - `ORDER_EXPIRY_HOURS`, `LOW_STOCK_THRESHOLD`
+- Buat dua Vercel Blob store: satu **public** untuk gambar produk, satu **private** untuk bukti pembayaran.
+- Untuk pengembangan lokal, tarik environment dari Vercel agar token Blob tersedia:
+  ```bash
+  cd backend && vercel env pull .env
+  ```
+- Jalankan migrasi database sekali secara manual/CI:
+  ```bash
+  pnpm --filter backend db:migrate
+  ```
+- Endpoint cron `GET /api/internal/orders/expire` dipanggil oleh Vercel Cron harian dengan header
+  `Authorization: Bearer $CRON_SECRET`. Order juga kedaluwarsa secara *lazy* saat diakses.
+- Di plan Hobby, Vercel Cron hanya boleh berjalan sekali sehari. Untuk expiry tiap 5 menit,
+  upgrade ke Pro lalu ubah `schedule` di `backend/vercel.json` menjadi `*/5 * * * *`.
+
+### Frontend (`frontend/`)
+
+- Set `NEXT_PUBLIC_API_URL=https://<domain-backend>` (nilai ini di-*bake* saat build, jadi redeploy setelah berubah).
+- `next.config.ts` sudah mengizinkan gambar dari Vercel Blob (`*.public.blob.vercel-storage.com`).
+
+### Auth lintas domain
+
+`SameSite=Lax` tidak dikirim browser pada request lintas-site. Untuk stabilitas terbaik gunakan
+custom domain dalam satu registrable domain, mis. `app.example.com` + `api.example.com`. Jika tetap
+memakai domain `*.vercel.app`, set `AUTH_COOKIE_SAMESITE=none` dan siapkan fallback karena sebagian
+browser memblokir cookie pihak ketiga.

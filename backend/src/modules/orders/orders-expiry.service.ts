@@ -1,5 +1,4 @@
 import { Injectable, Logger } from "@nestjs/common";
-import { Cron, CronExpression } from "@nestjs/schedule";
 import { OrdersService } from "./orders.service.js";
 
 @Injectable()
@@ -9,20 +8,21 @@ export class OrdersExpiryService {
 
   constructor(private readonly ordersService: OrdersService) {}
 
-  @Cron(CronExpression.EVERY_5_MINUTES)
-  async sweep(): Promise<void> {
-    if (this.running) return;
+  async sweep(): Promise<number> {
+    if (this.running) return 0;
     this.running = true;
     try {
       const expired = await this.ordersService.expireOrders();
       if (expired > 0) {
         this.logger.log(`Membatalkan ${expired} pesanan transfer kedaluwarsa.`);
       }
+      return expired;
     } catch (error) {
       this.logger.error(
         "Gagal menjalankan pembersihan pesanan kedaluwarsa.",
         error instanceof Error ? error.stack : String(error),
       );
+      throw error;
     } finally {
       this.running = false;
     }
